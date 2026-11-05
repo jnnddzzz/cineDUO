@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plan Dúo · CineDUO El Portil</title>
+  <meta name="description" content="Plan Dúo en CineDUO: 2 entradas y menú para compartir por 15 €, de lunes a jueves. Solo hasta el 30 de noviembre.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --noche: #0a1033;
+      --noche-2: #131b4d;
+      --azul: #0b2ee0;
+      --maiz: #ffd23f;
+      --blanco: #f4f6ff;
+      --suave: #aeb6e0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Bricolage Grotesque", "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--noche);
+      color: var(--blanco);
+      line-height: 1.55;
+    }
+    a { color: inherit; }
+    .contenedor { max-width: 1080px; margin: 0 auto; padding: 0 22px; }
+
+    /* Cabecera */
+    header { padding: 22px 0; }
+    header .contenedor { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .marca { font-weight: 800; font-size: 24px; letter-spacing: -0.5px; }
+    .marca span { color: var(--maiz); }
+    .lugar { color: var(--suave); font-size: 15px; }
+
+    /* Portada con la entrada gigante */
+    .portada { padding: 40px 0 80px; }
+    .portada .contenedor { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+    .aviso {
+      display: inline-block; background: var(--maiz); color: var(--noche);
+      font-weight: 600; padding: 6px 14px; border-radius: 999px; font-size: 15px; margin-bottom: 18px;
+    }
+    h1 {
+      font-size: clamp(44px, 8vw, 88px); line-height: .95; margin: 0 0 20px;
+      font-weight: 800; letter-spacing: -2px;
+    }
+    .portada p.lead { font-size: 20px; color: var(--suave); max-width: 480px; margin: 0 0 30px; }
+    .botones { display: flex; gap: 12px; flex-wrap: wrap; }
+    .boton {
+      display: inline-block; padding: 15px 28px; border-radius: 999px;
+      font-weight: 600; font-size: 17px; text-decoration: none; border: 2px solid var(--maiz);
+    }
+    .boton.lleno { background: var(--maiz); color: var(--noche); }
+    .boton.lleno:hover { filter: brightness(1.08); }
+    .boton.vacio { color: var(--maiz); }
+    .boton.vacio:hover { background: rgba(255, 210, 63, .1); }
+    .boton:focus-visible { outline: 3px solid var(--blanco); outline-offset: 3px; }
+
+    .entrada {
+      position: relative; background: var(--maiz); color: var(--noche);
+      border-radius: 22px; padding: 34px 34px 30px; transform: rotate(-4deg);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, .45);
+    }
+    /* Muescas laterales de la entrada */
+    .entrada::before, .entrada::after {
+      content: ""; position: absolute; top: 58%; width: 38px; height: 38px;
+      background: var(--noche); border-radius: 50%; transform: translateY(-50%);
+    }
+    .entrada::before { left: -19px; }
+    .entrada::after { right: -19px; }
+    .entrada .tit { font-weight: 600; font-size: 18px; margin: 0; }
+    .entrada .precio { font-weight: 800; font-size: clamp(90px, 14vw, 150px); line-height: .9; margin: 6px 0 4px; letter-spacing: -4px; }
+    .entrada .antes { font-size: 17px; margin: 0 0 18px; }
+    .entrada .antes s { opacity: .65; }
+    .entrada .troquel { border-top: 3px dashed rgba(10, 16, 51, .35); margin: 18px -34px 16px; }
+    .entrada .codigo { display: flex; justify-content: space-between; align-items: center; font-size: 15px; }
+    .entrada .codigo b { font-size: 24px; letter-spacing: 3px; }
+
+    /* Qué incluye */
+    section { padding: 70px 0; }
+    h2 { font-size: clamp(32px, 5vw, 48px); line-height: 1; margin: 0 0 14px; font-weight: 800; letter-spacing: -1px; }
+    .intro { color: var(--suave); font-size: 18px; margin: 0 0 36px; max-width: 560px; }
+
+    .incluye { background: var(--noche-2); }
+    .lista { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .item { border-left: 4px solid var(--maiz); padding: 4px 0 4px 18px; }
+    .item h3 { margin: 0 0 4px; font-size: 22px; }
+    .item p { margin: 0; color: var(--suave); }
+
+    /* Pasos para conseguirlo */
+    .pasos { list-style: none; padding: 0; margin: 0; display: grid; gap: 18px; max-width: 680px; counter-reset: paso; }
+    .pasos li { display: flex; gap: 18px; align-items: flex-start; font-size: 18px; }
+    .pasos li::before {
+      counter-increment: paso; content: counter(paso);
+      flex: none; width: 44px; height: 44px; border-radius: 50%;
+      display: grid; place-items: center; background: var(--azul); font-weight: 800; font-size: 20px;
+    }
+    .pasos li strong { color: var(--maiz); }
+
+    /* Condiciones y llamada al chat */
+    .condiciones { color: var(--suave); font-size: 15px; max-width: 680px; margin-top: 34px; }
+    .chat-cta {
+      margin-top: 48px; padding: 28px; border-radius: 18px; background: var(--azul);
+      display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;
+    }
+    .chat-cta p { margin: 0; font-size: 20px; font-weight: 600; max-width: 520px; }
+    .chat-cta span { font-size: 15px; opacity: .85; }
+
+    footer { padding: 30px 0 110px; color: var(--suave); font-size: 14px; border-top: 1px solid var(--noche-2); }
+    footer .contenedor { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+    @media (max-width: 820px) {
+      .portada .contenedor { grid-template-columns: 1fr; gap: 56px; }
+      .entrada { transform: rotate(-2deg); max-width: 420px; }
+      .lista { grid-template-columns: 1fr; }
+      .lugar { display: none; }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .entrada { animation: entra .7s cubic-bezier(.2, .8, .2, 1) both; }
+      @keyframes entra { from { opacity: 0; transform: rotate(4deg) translateY(30px); } to { opacity: 1; transform: rotate(-4deg); } }
+    }
+    @media (prefers-reduced-motion: no-preference) and (max-width: 820px) {
+      @keyframes entra { from { opacity: 0; transform: rotate(2deg) translateY(30px); } to { opacity: 1; transform: rotate(-2deg); } }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="contenedor">
+      <div class="marca">Cine<span>DUO</span></div>
+      <div class="lugar">Calle Estrella, 8 · El Portil (Huelva)</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="portada" style="padding-top:40px">
+      <div class="contenedor">
+        <div>
+          <span class="aviso">Solo hasta el 30 de noviembre</span>
+          <h1>Plan Dúo: el cine es mejor a medias</h1>
+          <p class="lead">Dos entradas y un menú para compartir por 15 €, de lunes a jueves. Trae a quien quieras: pareja, amigo, madre o vecino.</p>
+          <div class="botones">
+            <a class="boton lleno" href="tel:956123456">Reservar: 956 123 456</a>
+            <a class="boton vacio" href="#como">Cómo conseguirlo</a>
+          </div>
+        </div>
+
+        <div class="entrada" aria-label="Plan Dúo por 15 euros, antes 24 euros, código DUO15">
+          <p class="tit">Plan Dúo · 2 personas</p>
+          <p class="precio">15 €</p>
+          <p class="antes">Por separado pagarías <s>24 €</s>. Ahorras 9 €.</p>
+          <div class="troquel"></div>
+          <div class="codigo"><span>Código de la promoción</span><b>DUO15</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="incluye">
+      <div class="contenedor">
+        <h2>Qué incluye</h2>
+        <p class="intro">Todo lo que necesitas para una tarde de cine entre dos.</p>
+        <div class="lista">
+          <div class="item">
+            <h3>2 entradas</h3>
+            <p>Para cualquiera de las películas de la cartelera, en Sala 1 o Sala 2.</p>
+          </div>
+          <div class="item">
+            <h3>Palomitas grandes</h3>
+            <p>Un cubo grande para compartir, recién hechas en nuestro bar.</p>
+          </div>
+          <div class="item">
+            <h3>2 refrescos medianos</h3>
+            <p>Uno para cada uno. También puedes elegir agua o zumo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="como">
+      <div class="contenedor">
+        <h2>Cómo conseguirlo</h2>
+        <p class="intro">En menos de un minuto.</p>
+        <ol class="pasos">
+          <li><span>Elige un día de <strong>lunes a jueves</strong> y la sesión que más te guste.</span></li>
+          <li><span>Compra en nuestra web con el código <strong>DUO15</strong>, o díselo en taquilla.</span></li>
+          <li><span>Recoge tu menú en el bar enseñando la entrada y disfruta de la película.</span></li>
+        </ol>
+        <p class="condiciones">Promoción válida del 1 al 30 de noviembre de 2026, de lunes a jueves, en todas las sesiones. No acumulable con otros descuentos. Hasta agotar existencias del menú.</p>
+
+        <div class="chat-cta">
+          <p>¿Qué película elegir? ¿A qué hora es la sesión? ¿Cómo llegar?<br><span>Pregúntaselo a nuestro asistente: pulsa el botón 💬 de la esquina. Responde las 24 horas.</span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="contenedor">
+      <span>CineDUO · Calle Estrella, 8 · El Portil (Huelva) · 956 123 456</span>
+      <span>Página de práctica con datos ficticios</span>
+    </div>
+  </footer>
+
+  <!-- ===================================================================
+       PEGA AQUÍ EL CÓDIGO DEL CHATBOT
+       (el de la pestaña "5 · Publicar" del editor, Opción A)
+       Debe quedar justo debajo de este comentario, antes del final de la página.
+       =================================================================== -->
+<!-- Chatbot de CineDUO -->
+<button id="cb-abrir" aria-label="Abrir chat"
+  style="position:fixed;right:20px;bottom:20px;width:56px;height:56px;border:none;border-radius:50%;background:#0b2ee0;color:#fff;font-size:26px;cursor:pointer;z-index:9999;box-shadow:0 2px 10px rgba(0,0,0,.3)">💬</button>
+<iframe id="cb-marco" src="https://script.google.com/a/lassalinassf.es/macros/s/AKfycbydYDEo_NAAXG-iF00BXl6z1VHsradKC5zpB9onw-GSwUgUryWokk5T5xabgZMMWEYt/exec?vista=chat" title="Chat de CineDUO"
+  style="display:none;position:fixed;right:20px;bottom:90px;width:360px;max-width:calc(100vw - 40px);height:520px;max-height:calc(100vh - 110px);border:none;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.3);z-index:9999;background:#fff"></iframe>
+<script>
+  document.getElementById("cb-abrir").addEventListener("click", function () {
+    var m = document.getElementById("cb-marco");
+    m.style.display = (m.style.display === "none") ? "block" : "none";
+  });
+</script>
+
+</body>
+</html>
+
