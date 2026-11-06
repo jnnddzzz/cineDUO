@@ -596,10 +596,10 @@
       <div class="cinta" aria-hidden="true"><div class="rollo" id="rollo"></div></div>
       <div class="contenedor">
         <div class="cabecera-seccion" data-revela>
-          <span class="kicker">Temporada de otoño</span>
+          <span class="kicker">Esta semana</span>
           <h2 class="grande">La <em>cartelera</em></h2>
           <div class="adorno">◆</div>
-          <p class="intro">Seis películas, dos salas y butacas de terciopelo. Pulsa una hora para reservar.</p>
+          <p class="intro">Tres películas esta semana, dos salas y butacas de terciopelo. Pulsa una hora para reservar.</p>
         </div>
         <div class="cartelera" id="lista-cartelera"></div>
       </div>
@@ -760,24 +760,15 @@
 
     /* ---------------- Datos ---------------- */
     var PELIS = [
-      { id: "ultima-funcion", titulo: "La Última Función", genero: "Drama", min: 112, edad: "+7",
-        sinopsis: "Tomás lleva cuarenta años proyectando películas en un cine de pueblo. La noche en que anuncian su cierre, prepara una última sesión que nadie olvidará.",
-        sesiones: [{ sala: 1, hora: "17:45" }, { sala: 1, hora: "20:15" }] },
-      { id: "marea-de-plata", titulo: "Marea de Plata", genero: "Thriller", min: 104, edad: "+12",
-        sinopsis: "Una farera de la costa de Huelva encuentra un barco a la deriva con una carga que no debería existir. Esa noche, la marea trae algo más.",
-        sesiones: [{ sala: 2, hora: "18:30" }, { sala: 1, hora: "22:45" }] },
-      { id: "noches-de-marisma", titulo: "Noches de Marisma", genero: "Romántica", min: 98, edad: "+7",
-        sinopsis: "Un ornitólogo despistado y una guía de la marisma tienen un verano para contar flamencos… y para no enamorarse.",
-        sesiones: [{ sala: 2, hora: "20:45" }] },
-      { id: "rumbo-a-saturno", titulo: "Rumbo a Saturno", genero: "Aventura familiar", min: 95, edad: "TP",
-        sinopsis: "Dos hermanos y un robot hecho de chatarra construyen un cohete en el garaje. El problema: funciona.",
-        sesiones: [{ sala: 1, hora: "12:00", finde: true }, { sala: 1, hora: "16:00" }] },
-      { id: "sombrero-gris", titulo: "El hombre del sombrero gris", genero: "Cine negro · Restaurada", min: 101, edad: "+16",
-        sinopsis: "Huelva, 1952. Un detective sin suerte acepta un caso sencillo: encontrar un sombrero. Nada en esta ciudad es sencillo.",
-        sesiones: [{ sala: 2, hora: "22:45" }] },
-      { id: "pipo-y-lola", titulo: "Pipo y Lola", genero: "Animación", min: 84, edad: "TP",
-        sinopsis: "Pipo, un cangrejo con miedo al agua, y Lola, una gaviota que no sabe volar, se unen para salvar su playa.",
-        sesiones: [{ sala: 2, hora: "12:30", finde: true }, { sala: 2, hora: "16:15" }] }
+      { id: "el-ultimo-faro", titulo: "El último faro", genero: "Drama y suspense", min: 112, edad: "+12",
+        sinopsis: "En lo alto de la costa, el último farero se niega a apagar su luz. Una noche de tormenta, lo que ilumina cambiará el pueblo para siempre.",
+        sesiones: [{ sala: 1, hora: "17:30" }, { sala: 1, hora: "20:30" }] },
+      { id: "pequenos-gigantes", titulo: "Pequeños gigantes", genero: "Animación familiar", min: 95, edad: "TP",
+        sinopsis: "Un cangrejo y una gaviota muy pequeños descubren que no hace falta ser grande para hacer cosas enormes.",
+        sesiones: [{ sala: 2, hora: "12:00", finde: true }, { sala: 2, hora: "16:30" }] },
+      { id: "noche-de-ruido", titulo: "Noche de ruido", genero: "Comedia", min: 104, edad: "+7",
+        sinopsis: "Una fiesta en el tercero, un vecino que solo quiere dormir y una noche en la que todo lo que puede salir mal, sale peor.",
+        sesiones: [{ sala: 2, hora: "19:00" }, { sala: 2, hora: "21:45" }] }
     ];
     var SALAS = {
       1: { nombre: "Sala 1 · Imperial", filas: "ABCDEFGH", porFila: 12, pasilloTras: 6 },
@@ -895,7 +886,7 @@
 
     /* cinta de película con fotogramas de los carteles */
     var rollo = $("rollo");
-    for (var k = 0; k < 4; k++) PELIS.forEach(function (p) { rollo.appendChild(el("div", { class: "fotograma", style: "background-image:url(carteles/" + p.id + ".jpg)" })); });
+    for (var k = 0; k < 8; k++) PELIS.forEach(function (p) { rollo.appendChild(el("div", { class: "fotograma", style: "background-image:url(carteles/" + p.id + ".jpg)" })); });
 
     /* ---------------- Taquilla ---------------- */
     var estado = { peli: null, fecha: null, hora: null, sala: null, butacas: [], codigo: false };
